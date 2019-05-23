@@ -1,0 +1,8 @@
+<form [formGroup]="formGroup" (ngSubmit)="updateData(formGroup.value)" >
+
+  <mat-form-field >
+    <input matInput formControlName="courseName" placeholder="Change course name">
+  </mat-form-field>
+
+  <button mat-button [disabled]="!formGroup.valid">Submit</button>
+</form>

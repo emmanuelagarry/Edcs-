@@ -1,0 +1,51 @@
+<div id="big_wrapper">
+
+<div id="form_wrapper">
+
+  <form [formGroup]="formGroup" (ngSubmit)="submitData(formGroup.value)" id="course-form">
+    <mat-form-field >
+      <input matInput formControlName="courseCode" placeholder="Course Code">
+    </mat-form-field>
+
+    <mat-form-field >
+      <input matInput formControlName="courseName" placeholder="Course Name">
+    </mat-form-field>
+
+    <button mat-button [disabled]="!formGroup.valid">Submit</button>
+  </form>
+
+
+
+  <!-- <form [formGroup]="formGroup" (ngSubmit)="submitData(formGroup.value)" id="course-form">
+    <mat-form-field class="angular-material-input-formfield">
+      <input matInput formControlName="courseCode" placeholder="Course name">
+    </mat-form-field>
+
+    <mat-form-field class="angular-material-input-formfield">
+      <input matInput formControlName="courseName" placeholder="Course Code">
+    </mat-form-field>
+
+    <button mat-button [disabled]="!formGroup.valid">Submit</button>
+  </form> -->
+
+</div>
+
+<div>
+  <ol>
+    <li *ngFor="let store of store | async">
+      <span>Course Code : {{store.courseCode}}</span>
+      <button mat-icon-button (click)="deleteCourse(store.id, store.courseCode)">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+      <br>
+      <span>Course Name : {{store.courseName}}</span>
+      <button mat-icon-button (click)="updateCourseName(store.id, store.courseName)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <br><br><br>
+    </li>
+  </ol>
+</div>
+
+
+</div>
