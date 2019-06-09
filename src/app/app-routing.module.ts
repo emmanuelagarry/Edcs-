@@ -5,11 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './modules/featured/edcs/edcs.module#EdcsModule',
+    loadChildren: () => import('./modules/featured/edcs/edcs.module').then(m => m.EdcsModule),
   },
   {
     path: '**',
-    loadChildren: './modules/featured/edcs/edcs.module#EdcsModule',
+    loadChildren: () => import('./modules/featured/edcs/edcs.module').then(m => m.EdcsModule),
   },
 ];
 
