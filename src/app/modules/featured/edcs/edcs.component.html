@@ -32,14 +32,14 @@
 
 <div>
   <ol>
-    <li *ngFor="let store of store | async">
+    <li *ngFor="let store of store | async; trackBy: trackByFn">
       <span>Course Code : {{store.courseCode}}</span>
-      <button mat-icon-button (click)="deleteCourse(store.id, store.courseCode)">
+      <button mat-icon-button (click)="deleteCourse(store._id, store.courseCode)">
         <mat-icon>delete_forever</mat-icon>
       </button>
       <br>
       <span>Course Name : {{store.courseName}}</span>
-      <button mat-icon-button (click)="updateCourseName(store.id, store.courseName)">
+      <button mat-icon-button (click)="updateCourseName(store)">
         <mat-icon>edit</mat-icon>
       </button>
       <br><br><br>

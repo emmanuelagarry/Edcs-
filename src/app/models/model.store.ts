@@ -1,5 +1,5 @@
 export interface Store {
-  id: string;
+  _id?: string;
   courseName: string;
   courseCode: string;
 }

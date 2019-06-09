@@ -4,6 +4,7 @@ import { KeyvalueService } from 'src/app/services/keyvalue/keyvalue.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EdcsComponent } from '../edcs.component';
 import { UpdateDialogData } from 'src/app/models/model.updatedialog';
+import { Store } from 'src/app/models/model.store';
 
 @Component({
   selector: 'app-update',
@@ -16,18 +17,20 @@ export class UpdateComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private keyvalue: KeyvalueService,
               public dialogRef: MatDialogRef<EdcsComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: UpdateDialogData) {
+              @Inject(MAT_DIALOG_DATA) public data: Store) {
     this.formGroup = formBuilder.group({
       courseName: [null, Validators.required]
     });
   }
 
   ngOnInit() {
-    console.log(this.data.id);
+    console.log(this.data.courseName);
   }
 
   updateData(item) {
-    this.keyvalue.updateCourseName(this.data.id, item.courseName).subscribe(e => console.log(e));
+    const newItem = this.data;
+    newItem.courseName = item.courseName;
+    this.keyvalue.updateCourseName(newItem).toPromise().then(() => this.dialogRef.close());
   }
 
 }

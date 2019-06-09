@@ -10,15 +10,15 @@ export class KeyvalueService {
   constructor(private http: HttpClient) { }
 
   addToMongodb(data) {
-    return this.http.post('http://0.0.0.0:8000/store/', data);
+    return this.http.post('http://0.0.0.0:3000/courses/', data);
   }
 
   getAll() {
-    return this.http.get<Store[]>('http://0.0.0.0:8000/store');
+    return this.http.get<Store[]>('http://0.0.0.0:3000/courses');
   }
 
-  updateCourseName(key: string, name: string) {
-    return this.http.put('http://0.0.0.0:8000/store/', { objectId: key, courseName: name});
+  updateCourseName(items: Store) {
+    return this.http.put('http://0.0.0.0:3000/courses/', items);
   }
 
   deleteCourse(key) {
@@ -26,5 +26,5 @@ export class KeyvalueService {
       objectId: key
     };
     console.log('this is the key ' + key );
-    return this.http.request('delete', 'http://0.0.0.0:8000/store', { body });  }
+    return this.http.request('delete', `http://0.0.0.0:3000/courses/${key}`); }
 }
