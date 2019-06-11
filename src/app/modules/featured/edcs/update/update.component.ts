@@ -30,7 +30,10 @@ export class UpdateComponent implements OnInit {
   updateData(item) {
     const newItem = this.data;
     newItem.courseName = item.courseName;
-    this.keyvalue.updateCourseName(newItem).toPromise().then(() => this.dialogRef.close());
+    this.keyvalue.updateCourseName(newItem).toPromise().then(() => this.dialogRef.close())
+      .catch(err => {
+        this.keyvalue.updateCourseName2(newItem).toPromise().then(() => this.dialogRef.close());
+      });
   }
 
 }

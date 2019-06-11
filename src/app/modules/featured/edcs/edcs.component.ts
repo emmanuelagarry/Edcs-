@@ -46,9 +46,10 @@ export class EdcsComponent implements OnInit {
     console.log(formdata1);
     if (promptMessage === true) {
       const deleteTheData = this.keyvalue.deleteCourse(formdata1).toPromise();
-      deleteTheData.then(
-        () => this.storeSubject$.next()
-      );
+      deleteTheData.then( () => this.storeSubject$.next()
+      ).catch(err => {
+        this.keyvalue.deleteCourse2(formdata1);
+      });
     }
   }
 
